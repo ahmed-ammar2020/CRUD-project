@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/css/bootstrap.min.css"
+      integrity="sha512-F7WyTLiiiPqvu2pGumDR15med0MDkUIo5VTVyyfECR5DZmCnDhti9q5VID02ItWjq6fvDfMaBaDl2J3WdL1uxA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <div class="mb-3">
+        <label for="productName" class="form-label">Product name:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="productName"
+          autocomplete="off"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="productPrice" class="form-label">Product price:</label>
+        <input
+          type="number"
+          class="form-control"
+          id="productPrice"
+          autocomplete="off"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="productCategory" class="form-label"
+          >Product category:</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="productCategory"
+          autocomplete="off"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="productDesc" class="form-label">Product description:</label>
+        <textarea
+          class="form-control"
+          placeholder="Write your message here"
+          id="productDesc"
+        ></textarea>
+      </div>
+      <button
+        type="submit"
+        class="btn btn-primary form-btn"
+        onclick="displayProduct()"
+      >
+        Add product
+      </button>
+
+      <div class="my-5 w-75 mx-auto">
+        <input
+          type="text"
+          class="form-control"
+          id="search"
+          autocomplete="off"
+          placeholder="Search..."
+          oninput="search(event)"
+        />
+      </div>
+      <table class="table mt-5 text-center">
+        <thead class="table-head">
+          <tr>
+            <th scope="col">Index</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Category</th>
+            <th scope="col">Desc</th>
+            <th scope="col">Update</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody id="tableContent"></tbody>
+      </table>
+    </div>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/js/bootstrap.min.js"
+      integrity="sha512-NWNl2ZLgVBoi6lTcMsHgCQyrZVFnSmcaa3zRv0L3aoGXshwoxkGs3esa9zwQHsChGRL4aLDnJjJJeP6MjPX46Q=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>
