@@ -20,19 +20,25 @@
         <label for="productName" class="form-label">Product name:</label>
         <input
           type="text"
-          class="form-control"
+          class="form-control form-inputs"
           id="productName"
           autocomplete="off"
         />
+        <div class="invalid-feedback d-none validate-name" role="alert">
+          The first letter must be uppercase
+        </div>
       </div>
       <div class="mb-3">
         <label for="productPrice" class="form-label">Product price:</label>
         <input
           type="number"
-          class="form-control"
+          class="form-control form-inputs"
           id="productPrice"
           autocomplete="off"
         />
+        <div class="invalid-feedback small d-none validate-price" role="alert">
+          must be from 1000 to 10000
+        </div>
       </div>
       <div class="mb-3">
         <label for="productCategory" class="form-label"
@@ -40,18 +46,27 @@
         >
         <input
           type="text"
-          class="form-control"
+          class="form-control form-inputs"
           id="productCategory"
           autocomplete="off"
         />
+        <div
+          class="invalid-feedback small d-none validate-category"
+          role="alert"
+        >
+          must be tv or mobile
+        </div>
       </div>
       <div class="mb-3">
         <label for="productDesc" class="form-label">Product description:</label>
         <textarea
-          class="form-control"
+          class="form-control form-inputs"
           placeholder="Write your message here"
           id="productDesc"
         ></textarea>
+        <div class="invalid-feedback small d-none validate-desc" role="alert">
+          must be more than one word
+        </div>
       </div>
       <button
         type="submit"

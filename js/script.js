@@ -1,5 +1,4 @@
 "use strict";
-// every single product is an object
 let productNameElem = document.getElementById("productName");
 let productPriceElem = document.getElementById("productPrice");
 let productCategoryElem = document.getElementById("productCategory");
@@ -7,6 +6,11 @@ let productDescElem = document.getElementById("productDesc");
 let formElems = document.querySelectorAll(".form-control");
 let formBtn = document.querySelector(".form-btn");
 let tableHeader = document.querySelector(".table-head");
+let alertName = document.querySelector(".validate-name");
+let alertPrice = document.querySelector(".validate-price");
+let alertCategory = document.querySelector(".validate-category");
+let alertDesc = document.querySelector(".validate-desc");
+let formInputs = document.querySelectorAll(".form-inputs");
 let productList;
 let updatedProductIndex;
 
@@ -63,15 +67,47 @@ function addToDocument() {
 }
 
 function displayProduct() {
-  if (formBtn.textContent !== "Update") {
-    createProduct();
+  if (
+    validateProductName() &&
+    validateProductPrice() &&
+    validateProductCategory() &&
+    validateProductDesc()
+  ) {
+    if (formBtn.textContent !== "Update") {
+      createProduct();
+    }
+
+    addToDocument();
+    localStorage.setItem("productList", JSON.stringify(productList));
+
+    clearForm();
+    formBtn.textContent = "Add product";
+    alertName.style.cssText = "display: none !important";
+    alertPrice.style.cssText = "display: none !important";
+    alertCategory.style.cssText = "display: none !important";
+    alertDesc.style.cssText = "display: none !important";
+    productNameElem.classList.remove("is-invalid");
+    productPriceElem.classList.remove("is-invalid");
+    productCategoryElem.classList.remove("is-invalid");
+    productDescElem.classList.remove("is-invalid");
+  } else {
+    if (!validateProductName()) {
+      alertName.style.cssText = "display: block !important";
+      productNameElem.classList.add("is-invalid");
+    }
+    if (!validateProductPrice()) {
+      alertPrice.style.cssText = "display: block !important";
+      productPriceElem.classList.add("is-invalid");
+    }
+    if (!validateProductCategory()) {
+      alertCategory.style.cssText = "display: block !important";
+      productCategoryElem.classList.add("is-invalid");
+    }
+    if (!validateProductDesc()) {
+      alertDesc.style.cssText = "display: block !important";
+      productDescElem.classList.add("is-invalid");
+    }
   }
-
-  addToDocument();
-  localStorage.setItem("productList", JSON.stringify(productList));
-
-  clearForm();
-  formBtn.textContent = "Add product";
 }
 
 function deleteProduct(index) {
@@ -115,4 +151,40 @@ function search(e) {
     }
   }
   tableBody.innerHTML = tableContent;
+}
+
+function validateProductName() {
+  let regex = /[A-Z][a-z]{2,6}/;
+  if (regex.test(productNameElem.value)) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function validateProductPrice() {
+  let regex = /^([1-9][0-9]{3}|10000)/;
+  if (regex.test(productPriceElem.value)) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function validateProductCategory() {
+  let regex = /(mobile|tv)/;
+  if (regex.test(productCategoryElem.value)) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function validateProductDesc() {
+  let regex = / +/;
+  if (regex.test(productDescElem.value)) {
+    return true;
+  } else {
+    return false;
+  }
 }
